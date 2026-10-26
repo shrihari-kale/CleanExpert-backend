@@ -5,6 +5,8 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
+console.log("JWT_SECRET loaded:", Boolean(process.env.JWT_SECRET));
+
 const connectDB = require("./config/db");
 
 const app = express();
@@ -18,6 +20,7 @@ app.use(express.json());
 const bookingRouters = require("./routes/bookingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 app.get("/", (req, res) => {
   res.send("");
@@ -26,6 +29,7 @@ app.get("/", (req, res) => {
 app.use("/api/bookings", bookingRouters);
 app.use("/api/review", reviewRoutes);
 app.use("/api/payment",paymentRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
