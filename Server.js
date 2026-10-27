@@ -31,8 +31,13 @@ app.use("/api/review", reviewRoutes);
 app.use("/api/payment",paymentRoutes);
 app.use("/api/auth", authRoutes);
 
+app.get("/", (req, res) => {
+  res.send("CleanExpert Backend is running!");
+});
+
+
 const PORT = process.env.PORT ||3000;
 
 app.listen(PORT,() => {
-  console.log("Server running on port 3000");
+  console.log("Server running on port ${PORT}");
 });
